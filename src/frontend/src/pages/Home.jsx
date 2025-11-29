@@ -63,6 +63,7 @@ const Home = ({ idToken, setIdToken }) => {
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Add a ref for the messages container
   const messagesEndRef = useRef(null);
@@ -1616,10 +1617,166 @@ const Home = ({ idToken, setIdToken }) => {
                 )}
               </div>
               
+              {/* Arrow Button Above Chat - Control Center Style */}
+              <div style={{
+                position: 'relative',
+                borderTop: '1px solid rgba(102, 126, 234, 0.1)'
+              }}>
+                {/* Centered Arrow Button */}
+                <div style={{
+                  position: 'absolute',
+                  top: '-20px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  zIndex: 20
+                }}>
+                  <button
+                    onClick={() => setShowSuggestions(!showSuggestions)}
+                    style={{
+                      background: showSuggestions 
+                        ? 'linear-gradient(135deg, #1f2937 0%, #764ba2 100%)'
+                        : 'white',
+                      color: showSuggestions ? 'white' : '#1f2937',
+                      border: showSuggestions ? 'none' : '2px solid rgba(102, 126, 234, 0.2)',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: showSuggestions 
+                        ? '0 4px 12px rgba(102, 126, 234, 0.4)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!showSuggestions) {
+                        e.currentTarget.style.background = 'rgba(102, 126, 234, 0.1)';
+                      }
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!showSuggestions) {
+                        e.currentTarget.style.background = 'white';
+                      }
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <span className="material-icons" style={{ 
+                      fontSize: '20px', 
+                      transform: showSuggestions ? 'rotate(180deg)' : 'none', 
+                      transition: 'transform 0.3s ease' 
+                    }}>
+                      expand_less
+                    </span>
+                  </button>
+                </div>
+
+                {/* Suggestion Chips Popup - Slides from bottom */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '100%',
+                  left: '0',
+                  right: '0',
+                  background: 'white',
+                  borderRadius: '16px 16px 0 0',
+                  boxShadow: '0 -4px 24px rgba(0, 0, 0, 0.15)',
+                  padding: showSuggestions ? '24px 32px' : '0 32px',
+                  maxHeight: showSuggestions ? '280px' : '0',
+                  overflowY: 'auto',
+                  zIndex: 15,
+                  border: '1px solid rgba(102, 126, 234, 0.2)',
+                  borderBottom: 'none',
+                  transition: 'all 0.3s ease',
+                  opacity: showSuggestions ? 1 : 0,
+                  transform: showSuggestions ? 'translateY(0)' : 'translateY(100%)',
+                  pointerEvents: showSuggestions ? 'auto' : 'none'
+                }}>
+                  {showSuggestions && (
+                    <>
+                      <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '16px'
+                      }}>
+                        <span style={{
+                          fontSize: '0.875rem',
+                          fontWeight: '600',
+                          color: '#1f2937'
+                        }}>Suggested prompts</span>
+                        <button
+                          onClick={() => setShowSuggestions(false)}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            fontSize: '1.5rem',
+                            color: '#6b7280',
+                            cursor: 'pointer',
+                            padding: '0',
+                            lineHeight: '1'
+                          }}
+                        >
+                          ×
+                        </button>
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '8px'
+                      }}>
+                        {[
+                          "Hello Finn !",
+                          "I'm looking for running shoes for an ultra-trail",
+                          "Tell me more details about Ultra Glide",
+                          "Add Ultra Glide, size 40, color Red/Grey to my shopping list",
+                          "Show my shopping list",
+                          "Find stores near me",
+                          "Please, place an order using my shopping list for the store Sports Diagonal Mar",
+                          "Check the status for my orders",
+                          "Please list delivery methods for the store Sports Diagonal Mar",
+                          "Update the delivery method to Express Delivery for my order [YOUR_ORDER_NUMBER]",
+                          "Thanks Finn !"
+                        ].map((suggestion, index) => (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              setInputMessage(suggestion);
+                              setShowSuggestions(false);
+                            }}
+                            style={{
+                              padding: '8px 16px',
+                              borderRadius: '20px',
+                              border: '1px solid rgba(102, 126, 234, 0.3)',
+                              background: 'white',
+                              color: '#1f2937',
+                              fontSize: '0.875rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease',
+                              whiteSpace: 'nowrap'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)';
+                              e.currentTarget.style.borderColor = '#1f2937';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.background = 'white';
+                              e.currentTarget.style.borderColor = 'rgba(102, 126, 234, 0.3)';
+                            }}
+                          >
+                            {suggestion}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
               {/* Updated Input Section with gradient accents */}
               <div style={{
                 padding: '24px 32px',
-                borderTop: '1px solid rgba(102, 126, 234, 0.1)',
                 background: 'white'
               }}>
                 <div style={{
