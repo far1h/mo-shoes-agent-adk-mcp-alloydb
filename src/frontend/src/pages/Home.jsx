@@ -345,150 +345,244 @@ const Home = ({ idToken, setIdToken }) => {
 
   return (
     <div style={{
-      backgroundColor: 'white',
-      display: 'flex',
-      justifyContent: 'center',
-      height: 'calc(100vh - 80px)', // Subtract header height
+      position: 'relative',
+      width: '100%',
+      height: '100vh',
+      overflow: 'hidden'
     }}>
+      {/* Full screen hero background */}
       <div style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%'
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'url(https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?w=1600&q=80) center/cover',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover'
       }}>
-        <img 
-          src={backgroundImage}
-          alt="Hiking adventure"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            position: 'relative'
-          }}
-        />
+        {/* Dark overlay for better text readability */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.5) 100%)'
+        }} />
+      </div>
+      
+      {/* Main Text Overlay - Centered */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
+        width: '100%',
+        maxWidth: '900px',
+        padding: '0 2rem',
+        zIndex: 2
+      }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(10px)',
+          padding: '8px 20px',
+          borderRadius: '50px',
+          marginBottom: '2rem',
+          border: '1px solid rgba(255, 255, 255, 0.3)'
+        }}>
+          <span className="material-icons" style={{ color: 'white', fontSize: '20px' }}>
+            smart_toy
+          </span>
+          <span style={{ color: 'white', fontWeight: '500', fontSize: '0.9rem', letterSpacing: '0.5px' }}>
+            AI Shopping Assistant
+          </span>
+        </div>
         
-        {/* Main Text Overlay - Centered */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          textAlign: 'center',
-          width: '100%',
-          maxWidth: '800px',
-          padding: '0 2rem',
-          zIndex: 2
-        }}>
-          <h1 style={{
-            fontSize: '4rem',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '1.5rem'
-          }}>
-            Run with purpose. Run with power.
-          </h1>
-          <p style={{
-            fontSize: '1.5rem',
-            color: 'white',
-            marginBottom: '2rem'
-          }}>
-            Spring Running Collection — Elevate your performance with our newest running essentials. 
-            Experience the thrill of every challenge.
-          </p>
-          <button 
-            onClick={() => setIsChatOpen(true)}
-            style={{
-              backgroundColor: 'white',
-              color: 'black',
-              padding: '1rem 2rem',
-              borderRadius: '0.25rem',
-              border: 'none',
-                    cursor: 'pointer',
-              fontSize: '1.25rem',
-                                                      fontWeight: '500'
-            }}
-          >
-            Shop Now
-                  </button>
-        </div>
-
-        {/* Updated bottom text overlay */}
-        <div style={{
-          position: 'absolute',
-          bottom: '20px',
-          right: '20px',
+        <h1 style={{
+          fontSize: '3.5rem',
+          fontWeight: '700',
           color: 'white',
-          fontSize: '0.9rem',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          padding: '8px 12px',
-          borderRadius: '4px',
-          zIndex: 2
+          marginBottom: '1.5rem',
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+          lineHeight: '1.2',
+          letterSpacing: '-0.02em'
         }}>
-          Built on <span style={{ 
-            textDecoration: 'underline',
-            fontWeight: 'bold'
-          }}>AlloyDB</span> using a Synthetic Dataset
-        </div>
-
-        {/* Centered Chat Overlay */}
-        {isChatOpen && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            justifyContent: 'center',
+          Your Personal Sports Shopping Assistant
+        </h1>
+        <p style={{
+          fontSize: '1.15rem',
+          color: 'rgba(255, 255, 255, 0.85)',
+          marginBottom: '2.5rem',
+          lineHeight: '1.6',
+          maxWidth: '600px',
+          margin: '0 auto 2.5rem',
+          textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+          fontWeight: '400'
+        }}>
+          Chat with Finn, our AI assistant, to find the perfect sports gear. 
+          Get personalized recommendations, product details, and more.
+        </p>
+        <button 
+          onClick={() => setIsChatOpen(true)}
+          style={{
+            background: 'white',
+            color: '#1f2937',
+            padding: '1rem 2.5rem',
+            borderRadius: '50px',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+            transition: 'all 0.3s ease',
+            display: 'inline-flex',
             alignItems: 'center',
-            zIndex: 1000
-          }}>
+            gap: '10px'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.3)';
+            e.currentTarget.style.background = '#f9fafb';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            e.currentTarget.style.background = 'white';
+          }}
+        >
+          <span className="material-icons">chat</span>
+          Start Shopping
+        </button>
+      </div>
+
+      {/* Bottom badge */}
+      <div style={{
+        position: 'absolute',
+        bottom: '24px',
+        right: '24px',
+        color: 'white',
+        fontSize: '0.95rem',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        backdropFilter: 'blur(10px)',
+        padding: '12px 20px',
+        borderRadius: '50px',
+        zIndex: 2,
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        fontWeight: '500'
+      }}>
+        Powered by <span style={{ 
+          fontWeight: 'bold'
+        }}>AlloyDB</span> & AI
+      </div>
+
+      {/* Centered Chat Overlay */}
+      {isChatOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000,
+          animation: 'fadeIn 0.3s ease-in'
+        }}>
             <div style={{
               width: '1536px',
-              height: '80vh',
-              backgroundColor: 'white',
-              borderRadius: '12px',
+              height: '85vh',
+              maxHeight: '900px',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '24px',
               display: 'flex',
               flexDirection: 'column',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4)',
+              animation: 'slideIn 0.4s ease-out'
             }}>
-              {/* Updated Chat Header with larger, bolder text */}
+              {/* Updated Chat Header with gradient */}
               <div style={{
-                padding: '20px',
-                borderBottom: '1px solid #eee',
+                padding: '24px 32px',
+                borderBottom: '1px solid rgba(102, 126, 234, 0.1)',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                backgroundColor: '#f8f9fa'
+                background: '#1f2937'
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px'
+                  gap: '16px'
                 }}>
-                  <span className="material-icons" style={{ 
-                    color: '#2563eb',
-                    fontSize: '28px'  // Larger icon
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(10px)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: '2px solid rgba(255, 255, 255, 0.3)'
                   }}>
-                    directions_run
-                  </span>
-                  <h3 style={{ 
-                    margin: 0,
-                    fontWeight: '700',  // Bolder text
-                    fontSize: '1.5rem', // Larger text
-                    color: '#1f2937'
-                  }}>
-                    Finn - Your Sports Shopping Assistant
-                  </h3>
+                    <span className="material-icons" style={{ 
+                      color: 'white',
+                      fontSize: '28px'
+                    }}>
+                      support_agent
+                    </span>
+                  </div>
+                  <div>
+                    <h3 style={{ 
+                      margin: 0,
+                      fontWeight: '700',
+                      fontSize: '1.6rem',
+                      color: 'white',
+                      letterSpacing: '-0.02em'
+                    }}>
+                      Finn - AI Shopping Assistant
+                    </h3>
+                    <p style={{
+                      margin: 0,
+                      fontSize: '0.9rem',
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      fontWeight: '400'
+                    }}>
+                      Online • Ready to help you find the perfect gear
+                    </p>
+                  </div>
                 </div>
                 <button 
                   onClick={() => setIsChatOpen(false)}
                   style={{
                     border: 'none',
-                    background: 'none',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(10px)',
                     cursor: 'pointer',
-                    fontSize: '1.8rem',  // Larger close button
-                    color: '#6b7280'
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '1.5rem',
+                    transition: 'all 0.2s ease',
+                    border: '2px solid rgba(255, 255, 255, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)';
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
                   ×
@@ -498,11 +592,12 @@ const Home = ({ idToken, setIdToken }) => {
               {/* Chat Content - Add ref for scrolling */}
               <div style={{
                 flex: 1,
-                padding: '16px',
+                padding: '32px',
                 overflowY: 'auto',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '12px'
+                gap: '20px',
+                background: 'rgba(249, 250, 251, 0.5)'
               }}>
                 {messages.map((message, index) => (
                   <div
@@ -510,11 +605,17 @@ const Home = ({ idToken, setIdToken }) => {
                     style={{
                       alignSelf: message.role === 'user' ? 'flex-end' : 'flex-start',
                       maxWidth: '70%',
-                      padding: '16px 20px',
-                      borderRadius: '12px',
-                      backgroundColor: message.role === 'user' ? '#2563eb' : '#f3f4f6',
-                      color: message.role === 'user' ? 'white' : 'black',
-                      fontSize: '24px'
+                      padding: '18px 24px',
+                      borderRadius: '16px',
+                      background: message.role === 'user' 
+                        ? 'linear-gradient(135deg, #1f2937 0%, #764ba2 100%)' 
+                        : 'white',
+                      color: message.role === 'user' ? 'white' : '#1f2937',
+                      fontSize: '24px',
+                      boxShadow: message.role === 'user' 
+                        ? '0 4px 12px rgba(102, 126, 234, 0.4)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.08)',
+                      animation: 'slideIn 0.3s ease-out'
                     }}
                   >
                     {message.role === 'user' ? (
@@ -1482,26 +1583,48 @@ const Home = ({ idToken, setIdToken }) => {
                 {isLoading && (
                   <div style={{
                     alignSelf: 'flex-start',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    backgroundColor: '#f3f4f6',
-                    color: 'black',
-                    fontSize: '24px'
+                    padding: '18px 24px',
+                    borderRadius: '16px',
+                    background: 'white',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                    display: 'flex',
+                    gap: '8px',
+                    alignItems: 'center'
                   }}>
-                    Typing...
+                    <div style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#1f2937',
+                      animation: 'pulse 1.4s ease-in-out infinite'
+                    }} />
+                    <div style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#1f2937',
+                      animation: 'pulse 1.4s ease-in-out 0.2s infinite'
+                    }} />
+                    <div style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: '#1f2937',
+                      animation: 'pulse 1.4s ease-in-out 0.4s infinite'
+                    }} />
                   </div>
                 )}
               </div>
               
-              {/* Updated Input Section with white background */}
+              {/* Updated Input Section with gradient accents */}
               <div style={{
-                padding: '16px',
-                borderTop: '1px solid #eee',
-                backgroundColor: 'white'  // Changed from #f8f9fa to white
+                padding: '24px 32px',
+                borderTop: '1px solid rgba(102, 126, 234, 0.1)',
+                background: 'white'
               }}>
                 <div style={{
                   display: 'flex',
-                  gap: '12px',
+                  gap: '16px',
                   alignItems: 'center'
                 }}>
                   <input 
@@ -1512,31 +1635,54 @@ const Home = ({ idToken, setIdToken }) => {
                     placeholder="Type your message..."
                     style={{
                       flex: 1,
-                      padding: '12px 16px',
-                      borderRadius: '24px',
-                      border: '1px solid #ddd',
-                      fontSize: '24px',
+                      padding: '16px 24px',
+                      borderRadius: '50px',
+                      border: '2px solid rgba(102, 126, 234, 0.2)',
+                      fontSize: '1rem',
                       outline: 'none',
-                      backgroundColor: 'white'
+                      backgroundColor: '#f9fafb',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = '#1f2937';
+                      e.target.style.backgroundColor = 'white';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = 'rgba(102, 126, 234, 0.2)';
+                      e.target.style.backgroundColor = '#f9fafb';
                     }}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={isLoading || !inputMessage.trim()}
                     style={{
-                      backgroundColor: isLoading || !inputMessage.trim() ? '#93c5fd' : '#2563eb',
+                      background: isLoading || !inputMessage.trim() 
+                        ? 'linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.5) 100%)' 
+                        : 'linear-gradient(135deg, #1f2937 0%, #764ba2 100%)',
                       color: 'white',
                       border: 'none',
                       borderRadius: '50%',
-                      width: '40px',
-                      height: '40px',
+                      width: '56px',
+                      height: '56px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      cursor: isLoading || !inputMessage.trim() ? 'not-allowed' : 'pointer'
+                      cursor: isLoading || !inputMessage.trim() ? 'not-allowed' : 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isLoading && inputMessage.trim()) {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 6px 16px rgba(102, 126, 234, 0.5)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)';
                     }}
                   >
-                    <span className="material-icons" style={{ fontSize: '20px' }}>
+                    <span className="material-icons" style={{ fontSize: '24px' }}>
                       send
                     </span>
                   </button>
@@ -1597,7 +1743,7 @@ const Home = ({ idToken, setIdToken }) => {
             </div>
           </div>
         )}
-      </div>
+      )}
     </div>
   );
 };

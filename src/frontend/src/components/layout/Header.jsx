@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png';
 import GoogleSignInButton from '../GoogleSignInButton';
 
 const Header = ({ idToken, setIdToken }) => {
@@ -14,27 +13,43 @@ const Header = ({ idToken, setIdToken }) => {
     <div style={{ 
       display: 'grid',
       gridTemplateColumns: '1fr auto 1fr',
-      padding: '1rem',
-      backgroundColor: 'white',
+      padding: '1.25rem 2rem',
+      background: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(20px)',
+      boxShadow: 'none',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
       alignItems: 'center',
-      gap: '2rem'
+      gap: '2rem',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 100
     }}>
       {/* Left: Categories */}
-      <div style={{ display: 'flex', gap: '1rem' }}>
-        <Link to="/" style={{ color: 'black' }}>Hike & Camp</Link>
-        <Link to="/" style={{ color: 'black' }}>Cycling</Link>
-        <Link to="/" style={{ color: 'black' }}>Running</Link>
-        <Link to="/" style={{ color: 'black' }}>Women</Link>
-        <Link to="/" style={{ color: 'black' }}>Men</Link>
-        <Link to="/" style={{ color: 'black' }}>Kids</Link>
+      <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.95rem', fontWeight: '500' }}>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Hike & Camp</Link>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Cycling</Link>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Running</Link>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Women</Link>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Men</Link>
+        <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.9)'}>Kids</Link>
       </div>
 
       {/* Center: Logo */}
-      <img 
-        src={logo} 
-        alt="Decathlon" 
-        style={{ height: '2rem' }}
-      />
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '8px',
+        fontSize: '1.5rem',
+        fontWeight: '800',
+        color: 'white'
+      }}>
+        <span className="material-icons" style={{ fontSize: '32px', color: 'white' }}>
+          directions_run
+        </span>
+        <span>SPORTIFY</span>
+      </div>
 
       {/* Right: Icons and Sign-In */}
       <div style={{ 
@@ -44,16 +59,20 @@ const Header = ({ idToken, setIdToken }) => {
         alignItems: 'center'
       }}>
         <button style={{
-          backgroundColor: 'black',
-          border: 'none',
+          background: 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
           borderRadius: '50%',
-          width: '40px',
-          height: '40px',
+          width: '44px',
+          height: '44px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          cursor: 'pointer'
-        }}>
+          cursor: 'pointer',
+          transition: 'all 0.2s'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'; }}>
           <span className="material-icons" style={{ color: 'white' }}>search</span>
         </button>
         {/* Optionally keep or remove the person icon */}
@@ -71,16 +90,20 @@ const Header = ({ idToken, setIdToken }) => {
           <span className="material-icons" style={{ color: 'white' }}>person_outline</span>
         </button> */}
         <button style={{
-          backgroundColor: 'black',
-          border: 'none',
+          background: 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
           borderRadius: '50%',
-          width: '40px',
-          height: '40px',
+          width: '44px',
+          height: '44px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          cursor: 'pointer'
-        }}>
+          cursor: 'pointer',
+          transition: 'all 0.2s'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'; }}>
           <span className="material-icons" style={{ color: 'white' }}>shopping_bag</span>
         </button>
         {/* Google Sign-In/Out Button */}
@@ -90,13 +113,18 @@ const Header = ({ idToken, setIdToken }) => {
           <button
             onClick={handleSignOut}
             style={{
-              backgroundColor: 'black',
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(10px)',
               color: 'white',
-              border: 'none',
-              padding: '8px 16px',
-              borderRadius: '4px',
-              cursor: 'pointer'
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              padding: '10px 20px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontWeight: '500',
+              transition: 'all 0.2s'
             }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)'; }}
           >
             Sign Out
           </button>
