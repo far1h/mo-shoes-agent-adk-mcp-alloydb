@@ -11,6 +11,18 @@ An intelligent sports shopping assistant powered by Google Cloud Platform, Agent
 
 ---
 
+## 🎥 Demo Video
+
+<div align="center">
+  
+[![Watch the Demo](https://img.youtube.com/vi/M8xtgbCvMZE/maxresdefault.jpg)](https://youtu.be/M8xtgbCvMZE)
+
+**Click the image above to watch the full demo** | [Direct Link](https://youtu.be/M8xtgbCvMZE)
+
+</div>
+
+---
+
 ## 🏆 Competition Criteria Fulfillment
 
 ### ✅ Cloud Run Usage (+5)
@@ -222,6 +234,8 @@ User signs in → OAuth verification → JWT token stored
 - **Responsive UI**: Desktop and mobile-optimized React interface
 - **Image Gallery**: Product photos with modal zoom
 - **Error Handling**: Graceful degradation and user feedback
+
+**🎬 See it in action:** [Watch the full demo video](https://youtu.be/M8xtgbCvMZE)
 
 ---
 
