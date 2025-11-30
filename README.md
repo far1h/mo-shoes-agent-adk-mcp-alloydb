@@ -363,6 +363,10 @@ WHERE si.store_id = (SELECT nearest_store FROM user_location)
 
 ## 🏗️ Technical Architecture
 
+<div align="center">
+  <img src="architecture.svg" alt="System Architecture Diagram" width="100%">
+</div>
+
 ### System Overview
 ```
 ┌─────────────────────────────────────────────────────────────┐
